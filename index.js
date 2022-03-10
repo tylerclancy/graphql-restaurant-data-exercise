@@ -1,61 +1,61 @@
-var { graphqlHTTP } = require("express-graphql");
-var { buildSchema, assertInputType } = require("graphql");
-var express = require("express");
+var { graphqlHTTP } = require('express-graphql');
+var { buildSchema, assertInputType } = require('graphql');
+var express = require('express');
 
 // Construct a schema, using GraphQL schema language
 var restaurants = [
   {
     id: 1,
-    name: "WoodsHill ",
+    name: 'WoodsHill ',
     description:
-      "American cuisine, farm to table, with fresh produce every day",
+      'American cuisine, farm to table, with fresh produce every day',
     dishes: [
       {
-        name: "Swordfish grill",
+        name: 'Swordfish grill',
         price: 27,
       },
       {
-        name: "Roasted Broccily ",
+        name: 'Roasted Broccily ',
         price: 11,
       },
     ],
   },
   {
     id: 2,
-    name: "Fiorellas",
+    name: 'Fiorellas',
     description:
-      "Italian-American home cooked food with fresh pasta and sauces",
+      'Italian-American home cooked food with fresh pasta and sauces',
     dishes: [
       {
-        name: "Flatbread",
+        name: 'Flatbread',
         price: 14,
       },
       {
-        name: "Carbonara",
+        name: 'Carbonara',
         price: 18,
       },
       {
-        name: "Spaghetti",
+        name: 'Spaghetti',
         price: 19,
       },
     ],
   },
   {
     id: 3,
-    name: "Karma",
+    name: 'Karma',
     description:
-      "Malaysian-Chinese-Japanese fusion, with great bar and bartenders",
+      'Malaysian-Chinese-Japanese fusion, with great bar and bartenders',
     dishes: [
       {
-        name: "Dragon Roll",
+        name: 'Dragon Roll',
         price: 12,
       },
       {
-        name: "Pancake roll ",
+        name: 'Pancake roll ',
         price: 11,
       },
       {
-        name: "Cod cakes",
+        name: 'Cod cakes',
         price: 13,
       },
     ],
@@ -94,11 +94,11 @@ type Mutation{
 var root = {
   restaurant: (arg) => {
     // Your code goes here
-    restaurants[arg.id]
+    return restaurants[arg.id];
   },
   restaurants: () => {
     // Your code goes here
-    restaurants
+    return restaurants;
   },
   setrestaurant: ({ input }) => {
     // Your code goes here
@@ -114,7 +114,7 @@ var root = {
 };
 var app = express();
 app.use(
-  "/graphql",
+  '/graphql',
   graphqlHTTP({
     schema: schema,
     rootValue: root,
@@ -122,4 +122,4 @@ app.use(
   })
 );
 var port = 5500;
-app.listen(5500, () => console.log("Running Graphql on Port:" + port));
+app.listen(5500, () => console.log('Running Graphql on Port:' + port));
