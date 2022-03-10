@@ -94,12 +94,16 @@ type Mutation{
 var root = {
   restaurant: (arg) => {
     // Your code goes here
+    restaurants[arg.id]
   },
   restaurants: () => {
     // Your code goes here
+    restaurants
   },
   setrestaurant: ({ input }) => {
     // Your code goes here
+    restaurants.push({ name: input.name, email: input.email, age: input.age });
+    return input;
   },
   deleterestaurant: ({ id }) => {
     // Your code goes here
@@ -119,5 +123,3 @@ app.use(
 );
 var port = 5500;
 app.listen(5500, () => console.log("Running Graphql on Port:" + port));
-
-export default root;
