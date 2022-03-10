@@ -107,6 +107,11 @@ var root = {
   },
   deleterestaurant: ({ id }) => {
     // Your code goes here
+    const ok = Boolean(restaurants[id]);
+    let delc = restaurants[id];
+    restaurants = restaurants.filter((item) => item.id !== id);
+    console.log(JSON.stringify(delc));
+    return { ok };
   },
   editrestaurant: ({ id, ...restaurant }) => {
     // Your code goes here
